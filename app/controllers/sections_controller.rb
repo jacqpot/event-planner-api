@@ -5,7 +5,7 @@ class SectionsController < ApplicationController
   def index
     @sections = Section.all
 
-    render json: @sections
+    render json: @sections, methods: [:set_startTime, ], except: [:startTime, :created_at, :updated_at]
   end
 
   # GET /sections/1
@@ -46,6 +46,6 @@ class SectionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def section_params
-      params.require(:section).permit(:title, :startTime, :duration, :description)
+      params.require(:section).permit(:title, :startTime, :duration, :description, :event_id)
     end
 end

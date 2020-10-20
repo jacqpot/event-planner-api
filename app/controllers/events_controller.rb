@@ -5,12 +5,12 @@ class EventsController < ApplicationController
   def index
     @events = Event.all
 
-    render json: @events, methods: [:set_date, :set_start, :set_finish], except: [:date, :start, :finish, :created_at, :updated_at]
+    render json: @events, include: [:sections], except: [ :created_at, :updated_at]
   end
 
   # GET /events/1
   def show
-    render json: @event
+    render json: @event, include: [:sections], methods: [:set_date, :set_start, :set_finish], except: [:date, :start, :finish, :created_at, :updated_at]
   end
 
   # POST /events

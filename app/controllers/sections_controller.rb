@@ -18,7 +18,7 @@ class SectionsController < ApplicationController
     @section = Section.new(section_params)
 
     if @section.save
-      render json: @section, status: :created, location: @section
+      render json: @section, include: :event, status: :created, location: @section
     else
       render json: @section.errors, status: :unprocessable_entity
     end

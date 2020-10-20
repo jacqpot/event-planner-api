@@ -10,7 +10,9 @@ class Event < ApplicationRecord
     def set_finish
         self.finish.strftime("%H:%M")
     end
-
+    def set_section_start
+        self.sections.map {|s| s.startTime = s.startTime.strftime("%H:%M")}
+    end
 end
 
 
